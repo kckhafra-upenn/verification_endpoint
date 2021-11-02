@@ -12,7 +12,7 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     contents = request.get_json(silent=True)
-    content = json.dumps(content)
+    # content = json.dumps(content)
     #Check if signature is valid
 
     result = True #Should only be true if signature validates
