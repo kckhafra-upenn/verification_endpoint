@@ -29,20 +29,20 @@ def verify():
         eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
         eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
-    #     # print( eth_sig_obj.messageHash )  
-    #     if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-    #         result=True
+        # print( eth_sig_obj.messageHash )  
+        if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
+            result=True
         
-    #Verify Algorand Signature
-    # elif content.payload.platform=="Algorand":
-    #     payload = content.payload
+    Verify Algorand Signature
+    elif content["payload"]["platform"]=="Algorand":
+        payload = content
 
-    #     algo_sk, algo_pk = algosdk.account.generate_account()
-    #     algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
+        algo_sk, algo_pk = algosdk.account.generate_account()
+        algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
-    #     if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,algo_pk):
-    #         print( "Algo sig verifies!" )
-    #         result=True
+        if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,algo_pk):
+            print( "Algo sig verifies!" )
+            result=True
     
     return jsonify(result)
 
