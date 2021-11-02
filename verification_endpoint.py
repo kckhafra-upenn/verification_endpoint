@@ -14,7 +14,7 @@ def verify():
     # print("Working ETH",content)
     #Verify Etherium Signature
     result = False #Should only be true if signature validates
-    if content.payload.platform==="Ethereum":
+    if content.payload.platform=="Ethereum":
       
         eth_account.Account.enable_unaudited_hdwallet_features()
         acct, mnemonic = eth_account.Account.create_with_mnemonic()
@@ -32,16 +32,16 @@ def verify():
             result=True
         
     #Verify Algorand Signature
-    elif content.payload.platform==="Algorand":
+    elif content.payload.platform=="Algorand":
         payload = content.payload
 
         algo_sk, algo_pk = algosdk.account.generate_account()
         algo_sig_str = algosdk.util.sign_bytes(payload.encode('utf-8'),algo_sk)
 
         if algosdk.util.verify_bytes(payload.encode('utf-8'),algo_sig_str,algo_pk):
-            # print( "Algo sig verifies!" )
+            print( "Algo sig verifies!" )
             result=True
-        )
+        
     else:
         result = False
     
