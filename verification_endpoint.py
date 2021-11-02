@@ -16,24 +16,22 @@ def verify():
     #Check if signature is valid
 
     result = True #Should only be true if signature validates
-    if content:
-        if 'payload' in content:
-            if content["payload"]["platform"]=="Ethereum":
-                result=True
-                eth_account.Account.enable_unaudited_hdwallet_features()
-                acct, mnemonic = eth_account.Account.create_with_mnemonic()
+        if content["payload"]["platform"]=="Ethereum":
+            result=True
+            # eth_account.Account.enable_unaudited_hdwallet_features()
+            # acct, mnemonic = eth_account.Account.create_with_mnemonic()
 
-                eth_pk = acct.address
-                eth_sk = acct.key
+            # eth_pk = acct.address
+            # eth_sk = acct.key
 
-                payload = content["payload"]
+            # payload = content["payload"]
 
-                eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-                eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
-                
-                # print( eth_sig_obj.messageHash )  
-                if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-                    result=True
+            # eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
+            # eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
+            
+            # # print( eth_sig_obj.messageHash )  
+            # if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
+            #     result=True
         
     # elif content["payload"]["platform"]=="Algorand":
     #     payload = content["payload"]
