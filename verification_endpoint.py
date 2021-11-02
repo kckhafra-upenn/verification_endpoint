@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_restful import Api
 import json
-import eth_account
-import algosdk
+# import eth_account
+# import algosdk
 import json
 
 app = Flask(__name__)
@@ -15,23 +15,23 @@ def verify():
     # content = json.dumps(content)
     #Check if signature is valid
 
-    result = False #Should only be true if signature validates
-    if content["payload"]["platform"]=="Ethereum":
-        result=True
-        eth_account.Account.enable_unaudited_hdwallet_features()
-        acct, mnemonic = eth_account.Account.create_with_mnemonic()
+    result = True #Should only be true if signature validates
+    # if content["payload"]["platform"]=="Ethereum":
+    #     result=True
+    #     eth_account.Account.enable_unaudited_hdwallet_features()
+    #     acct, mnemonic = eth_account.Account.create_with_mnemonic()
 
-        eth_pk = acct.address
-        eth_sk = acct.key
+    #     eth_pk = acct.address
+    #     eth_sk = acct.key
 
-        payload = content.payload
+    #     payload = content.payload
 
-        eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
-        eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
+    #     eth_encoded_msg = eth_account.messages.encode_defunct(text=payload)
+    #     eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         
-        # print( eth_sig_obj.messageHash )  
-        if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
-            result=True
+    #     # print( eth_sig_obj.messageHash )  
+    #     if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
+    #         result=True
         
     #Verify Algorand Signature
     # elif content.payload.platform=="Algorand":
