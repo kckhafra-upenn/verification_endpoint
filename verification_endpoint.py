@@ -12,12 +12,12 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     contents = request.get_json(silent=True)
-    # content = json.dumps(content)
+    content = json.dumps(content)
     #Check if signature is valid
 
     result = True #Should only be true if signature validates
-    # if content.payload.platform=="Ethereum":
-      
+    if content.payload.platform=="Ethereum":
+        result=True
     #     eth_account.Account.enable_unaudited_hdwallet_features()
     #     acct, mnemonic = eth_account.Account.create_with_mnemonic()
 
