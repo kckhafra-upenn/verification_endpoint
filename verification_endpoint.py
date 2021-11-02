@@ -11,6 +11,7 @@ app.url_map.strict_slashes = False
 @app.route('/verify', methods=['GET','POST'])
 def verify():
     content = request.get_json(silent=True)
+    print("Working ETH",content)
     #Verify Etherium Signature
     result = False #Should only be true if signature validates
     if content.payload.platform==="Ethereum":
@@ -27,7 +28,7 @@ def verify():
         eth_sig_obj = eth_account.Account.sign_message(eth_encoded_msg,eth_sk)
         result=True
         print( eth_sig_obj.messageHash )  
-        print("Working ETH")
+        
     #Verify Algorand Signature
     elif content.payload.platform==="Algorand":
         payload = "Sign this!"
