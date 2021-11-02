@@ -17,7 +17,7 @@ def verify():
 
     result = True #Should only be true if signature validates
     if content:
-        if 'payload' in request_data:
+        if 'payload' in content:
             if content["payload"]["platform"]=="Ethereum":
                 result=True
                 eth_account.Account.enable_unaudited_hdwallet_features()
