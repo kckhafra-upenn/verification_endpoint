@@ -42,7 +42,8 @@ def verify():
             # print( "Algo sig verifies!" )
             result=True
         )
-        
+    else:
+        result = False
     
     return jsonify(result)
 
