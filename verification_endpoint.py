@@ -16,8 +16,8 @@ def verify():
     #Check if signature is valid
 
     result = True #Should only be true if signature validates
-        if content["payload"]["platform"]=="Ethereum":
-            result=True
+    if content["payload"]["platform"]=="Ethereum":
+        result=True
             # eth_account.Account.enable_unaudited_hdwallet_features()
             # acct, mnemonic = eth_account.Account.create_with_mnemonic()
 
