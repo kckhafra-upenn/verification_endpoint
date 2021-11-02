@@ -16,6 +16,7 @@ def verify():
     #Check if signature is valid
 
     result = True #Should only be true if signature validates
+    
     if content["payload"]["platform"]=="Ethereum":
         result=True
         eth_account.Account.enable_unaudited_hdwallet_features()
@@ -33,7 +34,6 @@ def verify():
         if eth_account.Account.recover_message(eth_encoded_msg,signature=eth_sig_obj.signature.hex()) == eth_pk:
             result=True
         
-    Verify Algorand Signature
     elif content["payload"]["platform"]=="Algorand":
         payload = content["payload"]
 
