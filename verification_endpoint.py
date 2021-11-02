@@ -3,6 +3,7 @@ from flask_restful import Api
 import json
 import eth_account
 import algosdk
+import json
 
 app = Flask(__name__)
 api = Api(app)
@@ -10,10 +11,10 @@ app.url_map.strict_slashes = False
 
 @app.route('/verify', methods=['GET','POST'])
 def verify():
-    content = request.get_json(silent=True)
-    
+    contents = request.get_json(silent=True)
+    content = json.dumps(content)
     #Check if signature is valid
-        
+
     result = False #Should only be true if signature validates
     if content.payload.platform=="Ethereum":
       
